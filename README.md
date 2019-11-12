@@ -1,8 +1,7 @@
 <p align="center"><img width="500" src="gothanks.png"></p>
 
 ![Build Status](https://github.com/psampaz/gothanks/workflows/CI%20Workflow/badge.svg)
-[![Go Report Card](https://goreportcard.com/badge/github.com/psampaz/gothanks)](https://goreportcard.com/report/github.com/psampaz/go-mod-outdated)
-[![GoDoc](https://godoc.org/github.com/psampaz/gothanks?status.svg)](https://godoc.org/github.com/psampaz/gothanks)
+[![Go Report Card](https://goreportcard.com/badge/github.com/psampaz/gothanks)](https://goreportcard.com/report/github.com/psampaz/gothanks)
 
 Give thanks (in the form of a GitHub ★) to your fellow Go modules maintainers. 
 
