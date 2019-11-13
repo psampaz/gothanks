@@ -1,3 +1,20 @@
+// Package main provides all the functionality for GoThanks. 
+// GoThanks automatically stars Go's official repository and your go.mod github dependencies,
+// providing a simple way to to say thanks to the maintainers of the modules you use and the contributors of Go itself.
+// 
+// Usage:
+// 
+// In order to run GoThanks you need to have a valid Github Access Token.
+// You can pass the token as an argument to GoThanks or store it in an environmental variable named GITHUB_TOKEN. 
+// 
+// Inside the folder where your go.mod lives run:
+//
+// $ ./gothanks -github-token=xxxxxx
+//
+// or
+//
+// $ export GITHUB_TOKEN=xxxxx
+// $ ./gothanks
 package main
 
 import (
