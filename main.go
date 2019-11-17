@@ -35,7 +35,7 @@ import (
 
 func main() {
 	githubToken := flag.String("github-token", os.Getenv("GITHUB_TOKEN"), "Github access token")
-	assumeYes := flag.Bool("yes", false, "Automatic yes to prompts and run non-interactively.")
+	assumeYes := flag.Bool("y", false, "Automatic yes to prompts and run non-interactively.")
 	flag.Parse()
 
 	if *githubToken == "" {
