@@ -29,7 +29,7 @@ $ go get -u github.com/psampaz/gothanks
 
 # Usage
 
-In order to run GoThanks you need to have a valid [Github Access Token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line). 
+In order to run GoThanks you need to have a valid [Github Access Token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) with `public_repo` scope. 
 
 You can pass the token as an argument to GoThanks or store it in an environmental variable named GITHUB_TOKEN.
 
