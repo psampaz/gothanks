@@ -1,12 +1,12 @@
-// Package main provides all the functionality for GoThanks. 
+// Package main provides all the functionality for GoThanks.
 // GoThanks automatically stars Go's official repository and your go.mod github dependencies,
 // providing a simple way to to say thanks to the maintainers of the modules you use and the contributors of Go itself.
-// 
+//
 // Usage:
-// 
+//
 // In order to run GoThanks you need to have a valid Github Access Token.
-// You can pass the token as an argument to GoThanks or store it in an environmental variable named GITHUB_TOKEN. 
-// 
+// You can pass the token as an argument to GoThanks or store it in an environmental variable named GITHUB_TOKEN.
+//
 // Inside the folder where your go.mod lives run:
 //
 // $ ./gothanks -github-token=xxxxxx
@@ -35,6 +35,7 @@ import (
 
 func main() {
 	githubToken := flag.String("github-token", os.Getenv("GITHUB_TOKEN"), "Github access token")
+	assumeYes := flag.Bool("y", false, "Automatic yes to prompts and run non-interactively.")
 	flag.Parse()
 
 	if *githubToken == "" {
@@ -54,17 +55,22 @@ func main() {
 		os.Exit(-1)
 	}
 
-	fmt.Printf("Welcome to GoThanks :)\n\nYou are about to star you beloved dependencies.\n\nPress y to continue or n to abort\n")
+	fmt.Println("Welcome to GoThanks :)")
 
-	confirmed, err := confirm(os.Stdin)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(-1)
-	}
+	// Asks user what he wants to do
+	if *assumeYes == false {
+		fmt.Println("\nYou are about to star you beloved dependencies.\n\nPress y to continue or n to abort")
 
-	if !confirmed {
-		fmt.Println("Aborting.")
-		os.Exit(0)
+		confirmed, err := confirm(os.Stdin)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(-1)
+		}
+
+		if !confirmed {
+			fmt.Println("Aborting.")
+			os.Exit(0)
+		}
 	}
 
 	parseResult, err := gomod.Parse("", input)

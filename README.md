@@ -66,3 +66,21 @@ Sending a star to github.com/sirupsen/logrus
 
 Thank you!
 ```
+
+You can also run it on non-interactive environments using `-y` flag.
+
+```go
+$ ./gothanks -y
+Welcome to GoThanks :)
+
+Sending your love..
+
+Repository github.com/golang/go is already starred!
+Repository github.com/google/go-github is already starred!
+Repository github.com/sirkon/goproxy is already starred!
+Repository github.com/golang/crypto is already starred!
+Repository github.com/golang/net is already starred!
+Repository github.com/golang/oauth2 is already starred!
+
+Thank you!
+```
