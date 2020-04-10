@@ -107,7 +107,7 @@ func main() {
 
 			_, err = client.Activity.Star(ctx, rep.owner, rep.repo)
 			if err != nil {
-				fmt.Printf("Could not star %s %s", rep.path, err)
+				fmt.Printf("Could not star %s %s\n", rep.path, err)
 			}
 		}
 	}
