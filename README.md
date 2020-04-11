@@ -51,6 +51,11 @@ $ ./gothanks
 docker run -it --rm -v $(pwd):/ -w /home psampaz/gothanks:latest -github-token=xxxxxx
 ```
 
+or 
+
+```
+docker run -it --rm -v $(pwd):/home --env GITHUB_TOKEN=value1 psampaz/gothanks:latest
+```
 
 # Example
 
