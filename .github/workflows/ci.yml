@@ -53,3 +53,20 @@ jobs:
       - run: |
           go get -u github.com/mfridman/tparse
           go test -v -race -cover -json ./... | $(go env GOPATH)/bin/tparse -all
+  docker:
+    strategy:
+      matrix:
+        go-version: [1.14.x]
+        platform: [ubuntu-latest]
+    name: docker
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-go@v1
+        with:
+          go-version: ${{ matrix.go-version }}
+      - run: |
+          docker build -t psampaz/gothanks .
+          docker run --rm -i  psampaz/gothanks -github_token=xxx -y
