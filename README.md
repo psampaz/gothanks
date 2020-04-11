@@ -45,6 +45,13 @@ or
 $ export GITHUB_TOKEN=xxxxx
 $ ./gothanks
 ```
+## Docker
+
+```
+docker run -it --rm -v $(pwd):/ -w /home psampaz/gothanks:latest -github-token=xxxxxx
+```
+
+
 # Example
 
 ```go
