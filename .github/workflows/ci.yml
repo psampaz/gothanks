@@ -69,4 +69,3 @@ jobs:
           go-version: ${{ matrix.go-version }}
       - run: |
           docker build -t psampaz/gothanks .
-          docker run --rm -i  psampaz/gothanks -github-token=xxx -y

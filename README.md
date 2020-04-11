@@ -48,7 +48,7 @@ $ ./gothanks
 ## Docker
 
 ```
-docker run -it --rm -v $(pwd):/ -w /home psampaz/gothanks:latest -github-token=xxxxxx
+docker run -it --rm -v $(pwd):/home -w /home psampaz/gothanks:latest -github-token=xxxxxx
 ```
 
 or 
