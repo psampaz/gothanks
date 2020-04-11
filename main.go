@@ -149,7 +149,7 @@ func isGithubRepo(path string) (githubRepo, bool) {
 	// Make sure we do not forget to star the Github mirrors of Go's subpackages
 	path = strings.Replace(path, "golang.org/x/", "github.com/golang/", -1)
 
-	re := regexp.MustCompile(`^github\.com\/[a-zA-Z\d-]+\/[a-zA-Z\d-\.]+`)
+	re := regexp.MustCompile(`^github\.com\/[a-zA-Z\d-]+\/[a-zA-Z\d-_\.]+`)
 	repoPath := re.FindString(path)
 	if repoPath != "" {
 		parts := strings.Split(repoPath, "/")

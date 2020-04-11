@@ -56,6 +56,36 @@ func Test_githubRepo(t *testing.T) {
 		want1 bool
 	}{
 		{
+			"github.com/owner/repo.xxx",
+			"github.com/owner/repo.xxx",
+			githubRepo{
+				path:  "github.com/owner/repo.xxx",
+				owner: "owner",
+				repo:  "repo.xxx",
+			},
+			true,
+		},
+		{
+			"github.com/owner/repo_xxx",
+			"github.com/owner/repo_xxx",
+			githubRepo{
+				path:  "github.com/owner/repo_xxx",
+				owner: "owner",
+				repo:  "repo_xxx",
+			},
+			true,
+		},
+		{
+			"github.com/owner/repo-xxx",
+			"github.com/owner/repo-xxx",
+			githubRepo{
+				path:  "github.com/owner/repo-xxx",
+				owner: "owner",
+				repo:  "repo-xxx",
+			},
+			true,
+		},
+		{
 			"github.com/owner/repo",
 			"github.com/owner/repo",
 			githubRepo{
