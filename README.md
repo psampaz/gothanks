@@ -45,6 +45,20 @@ or
 $ export GITHUB_TOKEN=xxxxx
 $ ./gothanks
 ```
+## Docker
+
+Run
+
+```
+docker run -it --rm -v $(pwd):/home psampaz/gothanks:latest -github-token=xxxxxx
+```
+
+or 
+
+```
+docker run -it --rm -v $(pwd):/home --env GITHUB_TOKEN=xxxxxx psampaz/gothanks:latest
+```
+
 # Example
 
 ```go
