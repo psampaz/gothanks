@@ -9,7 +9,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Fixed
 - Allow github repos with . and _ in the url
 
-
 ## [v0.2.0] - 2019-11-18
 ### Added
 - Run it on non-interactive environments using `-y` flag
