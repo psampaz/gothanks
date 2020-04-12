@@ -47,6 +47,8 @@ $ ./gothanks
 ```
 ## Docker
 
+Run
+
 ```
 docker run -it --rm -v $(pwd):/home psampaz/gothanks:latest -github-token=xxxxxx
 ```
