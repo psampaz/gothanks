@@ -54,7 +54,7 @@ docker run -it --rm -v $(pwd):/home psampaz/gothanks:latest -github-token=xxxxxx
 or 
 
 ```
-docker run -it --rm -v $(pwd):/home --env GITHUB_TOKEN=value1 psampaz/gothanks:latest
+docker run -it --rm -v $(pwd):/home --env GITHUB_TOKEN=xxxxxx psampaz/gothanks:latest
 ```
 
 # Example
