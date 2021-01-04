@@ -27,6 +27,7 @@ import (
 	"os"
 	"regexp"
 	"strings"
+	"sync"
 
 	"github.com/google/go-github/v28/github"
 	"github.com/sirkon/goproxy/gomod"
@@ -89,28 +90,34 @@ func main() {
 	}
 
 	fmt.Print("\nSending your love..\n\n")
+	var wg sync.WaitGroup
 	for _, dep := range repos {
+		wg.Add(1)
+		go func(dep string, wg *sync.WaitGroup) {
+			defer wg.Done()
+			if rep, ok := isGithubRepo(dep); ok {
+				x, _, err := client.Activity.IsStarred(ctx, rep.owner, rep.repo)
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
 
-		if rep, ok := isGithubRepo(dep); ok {
-			x, _, err := client.Activity.IsStarred(ctx, rep.owner, rep.repo)
-			if err != nil {
-				fmt.Println(err)
-				continue
+				if x {
+					fmt.Printf("Repository %s is already starred!\n", rep.path)
+					return
+				}
+
+				fmt.Printf("Sending a star to %s\n", rep.path)
+
+				_, err = client.Activity.Star(ctx, rep.owner, rep.repo)
+				if err != nil {
+					fmt.Printf("Could not star %s %s\n", rep.path, err)
+				}
 			}
-
-			if x {
-				fmt.Printf("Repository %s is already starred!\n", rep.path)
-				continue
-			}
-
-			fmt.Printf("Sending a star to %s\n", rep.path)
-
-			_, err = client.Activity.Star(ctx, rep.owner, rep.repo)
-			if err != nil {
-				fmt.Printf("Could not star %s %s\n", rep.path, err)
-			}
-		}
+		}(dep, &wg)
 	}
+
+	wg.Wait()
 
 	fmt.Println("\nThank you!")
 }
