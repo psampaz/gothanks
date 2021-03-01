@@ -5,67 +5,50 @@ jobs:
   build:
     strategy:
       matrix:
-        go-version: [1.13.x, 1.14.x]
+        go-version: [1.16.x]
         platform: [ubuntu-latest, macos-latest]  
     name: build
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 1
-      - uses: actions/setup-go@v1
+      - uses: actions/setup-go@v2
         with:
           go-version: ${{ matrix.go-version }}
       - run: go build  
   lint:
     strategy:
       matrix:
-        go-version: [1.13.x, 1.14.x]
+        go-version: [1.16.x]
         platform: [ubuntu-latest]  
     name: lint
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 1
-      - uses: actions/setup-go@v1
+      - uses: actions/setup-go@v2
         with:
           go-version: ${{ matrix.go-version }}
-      - run: |          
-          export PATH=$PATH:$(go env GOPATH)/bin # temporary fix. See https://github.com/actions/setup-go/issues/14
-          go get -u golang.org/x/lint/golint 
+      - run: |
+          go install golang.org/x/lint/golint@v0.0.0-20201208152925-83fdc39ff7b5
           golint -set_exit_status ./...
           go vet ./...
   tests:
     strategy:
       matrix:
-        go-version: [1.13.x, 1.14.x]
+        go-version: [1.16.x]
         platform: [ubuntu-latest, macos-latest]  
     name: tests
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 1
-      - uses: actions/setup-go@v1
+      - uses: actions/setup-go@v2
         with:
           go-version: ${{ matrix.go-version }}
       - run: |
           go get -u github.com/mfridman/tparse
           go test -v -race -cover -json ./... | $(go env GOPATH)/bin/tparse -all
-  docker:
-    strategy:
-      matrix:
-        go-version: [1.14.x]
-        platform: [ubuntu-latest]
-    name: docker
-    runs-on: ${{ matrix.platform }}
-    steps:
-      - uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
-      - uses: actions/setup-go@v1
-        with:
-          go-version: ${{ matrix.go-version }}
-      - run: |
-          docker build -t psampaz/gothanks .
