@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [v0.5.0] - 2023-02-18
+### Changed
+- Updated dependencies to latest versions
+- Updated ci pipeline config
+- Updated docker file to use latest alpine image
+
 ## [v0.4.0] - 2021-03-01
 ### Added
 - GoReleaser
