@@ -28,7 +28,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/google/go-github/v28/github"
+	"github.com/google/go-github/v50/github"
 	"github.com/sirkon/goproxy/gomod"
 	"golang.org/x/oauth2"
 )
